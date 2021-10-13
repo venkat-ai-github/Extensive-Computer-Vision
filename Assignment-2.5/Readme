@@ -1,0 +1,39 @@
+EVA Assignment 2.5
+
+Problem Statement:
+
+Inputs: Image of digit from MNIST dataset and random number between 0 and 9
+To predict the digit in the Image and the Sum of the random number and the digit
+
+Data representation and generation strategy:
+
+For each image and for each number between 0 and 9, Augument the dataset with the the random number as another input data and sum as another output data.
+Total datapoints = 60000(From MNIST) * 10(digits) = 6,00,000 datpoints.
+Onehot encoding is used for both random number and summed number
+
+Model:
+
+-Conv2d - channels=10, kernel_size=5
+-MaxPool2d(2,2)
+-Conv2d -channels=16, kernel_size=3
+-Dropout2d()
+-MaxPool2d(2,2)
+-FC - out_features=50
+-FC - out_features=10   -> First Output digit classification
+
+-Concat classification output and input random number
+
+-FC - out_features=50
+-FC - out_features=70
+-FC - out_features=19   -> Second output which is sum of random number and digit
+
+Result Evaluation:
+
+Loss and number of correct outputs
+
+Custom loss Function:
+
+- Cross Entropy for classification
+- MSE for Regression
+- Combined as weighted sum
+ 
